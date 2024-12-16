@@ -18,6 +18,6 @@ internal static class DatabaseConfiguration
         services.AddScoped(options => new OracleCFDBDbContext(databaseSettings.OracleCFDB));
         services.AddScoped(options => new OracleDMSPhaseFourDbContext(databaseSettings.OracleDMSPhaseFour));
         services.AddScoped(options => new MySqlDbContext(databaseSettings.MySql));
-        services.AddDbContext<OracleCFDBDbContext_copy>();
+        services.AddDbContext<MediconcernDbContext>();
     }
 }

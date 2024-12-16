@@ -12,6 +12,6 @@ public sealed class Facility : BaseEntity
     public string Details { get; set; } = string.Empty;
 
     [ForeignKey(nameof(Hospital))]
-    public int HospitalId { get; set; }
+    public long HospitalId { get; set; }
     public Hospital Hospital { get; set; } = null!;
 }

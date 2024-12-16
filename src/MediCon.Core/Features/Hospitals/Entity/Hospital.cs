@@ -20,12 +20,13 @@ public sealed class Hospital : BaseEntity
     public string Website { get; set; } = string.Empty;
 
     [ForeignKey(nameof(City))]
-    public int CityId { get; set; }
+    public long CityId { get; set; }
     public City City { get; set; } = null!;
+
     [ForeignKey(nameof(Speciality))]
-    public int SpecialityId { get; set; }
+    public long SpecialityId { get; set; }
     public Speciality Speciality { get; set; } = null!;
     [ForeignKey(nameof(Treatment))]
-    public int TreatmentId { get; set; }
+    public long TreatmentId { get; set; }
     public Treatment Treatment { get; set; } = null!;
 }

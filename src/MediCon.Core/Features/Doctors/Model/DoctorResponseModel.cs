@@ -1,10 +1,8 @@
-﻿using MediCon.Core.Configurations.CommonModel;
+﻿namespace MediCon.Core.Features.Doctors.Model;
 
-
-namespace MediCon.Core.Features.Doctors.Entity;
-
-public sealed class Doctor : BaseEntity
+public sealed class DoctorResponseModel
 {
+    public long Id { get; set; }
     public string Name { get; set; } = string.Empty;
     public string Designation { get; set; } = string.Empty;
     public string Degree { get; set; } = string.Empty;
