@@ -1,0 +1,16 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? blockUIJs;
+
+    protected override void OnInitialized()
+    {
+        blockUIJs = Navigation.ToAbsoluteUri("vuexy/libs/block-ui/block-ui.js").ToString();
+    }
+}
+
+
+<script type="text/javascript" src="@blockUIJs"></script>
+
+
+@* <script type="text/javascript" src="../vuexy/libs/block-ui/block-ui.js"></script> *@

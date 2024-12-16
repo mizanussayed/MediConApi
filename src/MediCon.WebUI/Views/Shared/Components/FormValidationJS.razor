@@ -1,0 +1,33 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? scriptPath;
+    private string? popularJS;
+    private string? autofocusJS;
+
+    protected override void OnInitialized()
+    {
+
+        popularJS = Navigation.ToAbsoluteUri("vuexy/libs/form-validation/popular.js").ToString();
+        scriptPath = Navigation.ToAbsoluteUri("vuexy/libs/form-validation/bootstrap5.js").ToString();
+        autofocusJS = Navigation.ToAbsoluteUri("vuexy/libs/form-validation/auto-focus.js").ToString();
+    }
+}
+<script type="text/javascript" src="@popularJS" asp-append-version="true"></script>
+<script type="text/javascript" src="@scriptPath" asp-append-version="true"></script>
+<script type="text/javascript" src="@autofocusJS" asp-append-version="true"></script>
+
+
+@* <script type="text/javascript" src="/vuexy/libs/form-validation/popular.js"></script> 
+<script type="text/javascript" src="/vuexy/libs/form-validation/bootstrap5.js"></script>
+<script type="text/javascript" src="/vuexy/libs/form-validation/auto-focus.js"></script> *@
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var elements = document.querySelectorAll(".form-control");
+        elements.forEach(function (element) {
+            element.setAttribute("autocomplete", "off");
+        });
+    });
+</script>

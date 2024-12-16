@@ -1,0 +1,15 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? alertJS;
+
+    protected override void OnInitialized()
+    {
+        alertJS = Navigation.ToAbsoluteUri("vuexy/libs/sweetalert2/sweetalert2.js").ToString();
+    }
+}
+
+<script type="text/javascript" src="@alertJS"></script>
+
+
+@* <script type="text/javascript" src="~/vuexy/libs/sweetalert2/sweetalert2.js"></script> *@

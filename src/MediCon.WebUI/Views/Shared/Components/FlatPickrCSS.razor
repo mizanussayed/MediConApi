@@ -1,0 +1,16 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? flatPickerCS;
+
+    protected override void OnInitialized()
+    {
+        flatPickerCS = Navigation.ToAbsoluteUri("vuexy/libs/flatpickr/flatpickr.css").ToString();
+    }
+}
+
+
+<link rel="stylesheet" href="@flatPickerCS" />
+
+
+@* <link rel="stylesheet" href="../vuexy/libs/flatpickr/flatpickr.css" /> *@

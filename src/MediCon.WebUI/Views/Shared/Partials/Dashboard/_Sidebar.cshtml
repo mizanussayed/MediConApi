@@ -1,0 +1,70 @@
+﻿@using MediCon.WebUI.Controllers.Home
+@using MediCon.WebUI.Configurations.Helper;
+@using MediCon.WebUI.Controllers.Operator;
+@using MediCon.WebUI.Controllers.ServiceType;
+@using MediCon.WebUI.Services.Generals.Enum
+
+@section Head {
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.CommonCSS)" render-mode="Static" />
+}
+<!-- Menu -->
+<aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme theme-background-dark">
+    <div class="app-brand demo">
+        @*         <a asp-controller="@nameof(HomeController).GetControllerName()" asp-action="@nameof(HomeController.Index)" class="app-brand-link">
+        <img src='BL Icons/logo.png' alt="" height="32" width="32">
+        <span class="app-brand-text demo menu-text fw-bold">MediCon</span>
+        </a> *@
+        <a asp-controller="@nameof(HomeController).GetControllerName()" asp-action="@nameof(HomeController.Index)" class="app-brand-link">
+            <span class="app-brand-logo demo">
+                @* <img src='BL Icons/logo.png' alt="" width="32" height="32" viewBox="0 0 32 32" fill="none"> *@
+                <object data="~/BL Icons/logo.png" width="32" height="32" viewBox="0 0 32 32" file="none"> </object>
+            </span>
+            <span class="app-brand-text demo menu-text fw-bold" style="color:white">MediCon</span>
+        </a>
+        <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+            <i class="ti menu-toggle-icon d-none d-xl-block ti-sm align-middle"></i>
+            <i class="ti ti-x d-block d-xl-none ti-sm align-middle"></i>
+        </a>
+    </div>
+
+    <div class="menu-inner-shadow"></div>
+
+    <ul class="menu-inner py-1" style="padding-bottom: 100px !important;">
+        <!-- Page -->
+        <li class="menu-item @Html.IsActive(nameof(HomeController).GetControllerName(), nameof(HomeController.Index))">
+            <a asp-controller="@nameof(HomeController).GetControllerName()" asp-action="@nameof(HomeController.Index)" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>Dashboard</div>
+            </a>
+        </li>
+            <li class="menu-item">
+                <a class="menu-link menu-toggle" href="javascript:void(0)">
+                    <i class="menu-icon ti ti-settings"></i>
+                    <div>
+                        Setup
+                    </div>
+                </a>
+
+                <ul class="menu-sub">
+                    <li class="menu-item @Html.IsActive(nameof(ServiceTypeController).GetControllerName(), nameof(ServiceTypeController.Index))">
+                        <a asp-controller="@nameof(ServiceTypeController).GetControllerName()" asp-action="@nameof(ServiceTypeController.Index)" class="menu-link">
+                            <div>
+                                Service Type
+                            </div>
+                        </a>
+                    </li>
+                  
+                    <li class="menu-item @Html.IsActive(nameof(OperatorController).GetControllerName(), nameof(OperatorController.Index))">
+                        <a asp-controller="@nameof(OperatorController).GetControllerName()" asp-action="@nameof(OperatorController.Index)" class="menu-link">
+                            <div>
+                                Operator
+                            </div>
+                        </a>
+                    </li>
+                    
+                </ul>
+            </li>
+
+    </ul>
+</aside>
+<!-- / Menu -->

@@ -1,0 +1,15 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? alertCS;
+
+    protected override void OnInitialized()
+    {
+        alertCS = Navigation.ToAbsoluteUri("vuexy/libs/sweetalert2/sweetalert2.css").ToString();
+    }
+}
+
+<link rel="stylesheet" href="@alertCS" />
+
+
+@* <link rel="stylesheet" href="../vuexy/libs/sweetalert2/sweetalert2.css" /> *@

@@ -1,0 +1,24 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? scriptPath;
+
+    private string? DT_Buttons;
+    private string? DT_Jszip;
+    private string? DT_Buttons_Html5;
+
+    protected override void OnInitialized()
+    {
+        scriptPath = Navigation.ToAbsoluteUri("vuexy/libs/datatables-bs5/datatables-bootstrap5.js").ToString();
+
+        DT_Buttons = Navigation.ToAbsoluteUri("lib/Datatable_Excel/datatables.buttons.min.js").ToString();
+        DT_Jszip = Navigation.ToAbsoluteUri("lib/Datatable_Excel/jszip.min.js").ToString();
+        DT_Buttons_Html5 = Navigation.ToAbsoluteUri("lib/Datatable_Excel/buttons.html5.min.js").ToString();
+    }
+}
+
+<script src="@scriptPath" asp-append-version="true"></script>
+
+<script src="@DT_Buttons" asp-append-version="true"></script>
+<script src="@DT_Jszip" asp-append-version="true"></script>
+<script src="@DT_Buttons_Html5" asp-append-version="true"></script>

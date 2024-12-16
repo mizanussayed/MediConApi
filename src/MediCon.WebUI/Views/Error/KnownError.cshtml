@@ -1,0 +1,11 @@
+﻿@using MediCon.WebUI.Controllers.Error.ViewModels
+@model KnownErrorViewModel
+@{
+    if (!Model.HasLayout)
+    {
+        Layout = null;
+    }
+}
+
+<h1>@Model.Title</h1>
+

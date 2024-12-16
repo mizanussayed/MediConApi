@@ -1,0 +1,17 @@
+﻿
+
+
+@inject NavigationManager Navigation
+
+@code {
+    private string? blockuics;
+
+    protected override void OnInitialized()
+    {
+        blockuics = Navigation.ToAbsoluteUri("vuexy/libs/block-ui/block-ui.css").ToString();
+    }
+}
+
+<link rel="stylesheet" href="@blockuics" />
+
+@* <link rel="stylesheet" href="../vuexy/libs/block-ui/block-ui.css" /> *@

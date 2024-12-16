@@ -1,0 +1,14 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? flatPickerJS;
+
+    protected override void OnInitialized()
+    {
+        flatPickerJS = Navigation.ToAbsoluteUri("vuexy/libs/flatpickr/flatpickr.js").ToString();
+    }
+}
+
+<script type="text/javascript" src="@flatPickerJS"></script>
+
+@* <script type="text/javascript" src="../vuexy/libs/flatpickr/flatpickr.js"></script> *@

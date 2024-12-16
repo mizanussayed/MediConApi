@@ -1,0 +1,176 @@
+﻿@using MediCon.WebUI.Configurations.Helper
+@using MediCon.WebUI.Controllers.Operator
+@using MediCon.WebUI.Controllers.Operator.ViewModels
+@using MediCon.WebUI.Services.OperatorInfo.Models
+@model OperatorEditViewModel
+
+@section Head {
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.FormValidationCSS)" render-mode="Static" />
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.BlockUICSS)" render-mode="Static" />
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.CommonCSS)" render-mode="Static" />
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title mb-3 d-flex align-items-center">
+            <a class="btn-ghost" asp-controller="@nameof(OperatorController).GetControllerName()"
+               asp-action="@nameof(OperatorController.Index)">
+                <i class="menu-icon ti ti-arrow-left"></i>
+            </a>
+            <h4 class="m-0">@Model.PageTitle</h4>
+        </div>
+
+        @*         @if (Model.IsError)
+        {
+        <div id="alert" class="alert alert-danger alert-dismissible" role="alert">
+        @Model.ErrorMessage
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close">
+        </button>
+        </div>
+        } *@
+
+        <form id="form" asp-asp-controller="@nameof(OperatorController).GetControllerName()"
+              asp-action="@nameof(OperatorController.Edit)" asp-route-id="@Model.OperatorResponse?.Id" method="post">
+            <div class="form-card">
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="name" class="form-label">Operator Name <span class="required">*</span></label>
+                        <input type="text" name="@nameof(OperatorInfoRequestModel.Name)" class="form-control" id="name"
+                               placeholder="Enter operator name" value="@(Model.OperatorResponse?.Name ?? Model.OperatorRequest?.Name)" />
+                    </div>
+                    <div class="mb-3  col-md-6">
+                        <label for="address" class="form-label">Address <span class="required">*</span></label>
+                        <input type="text" name="@nameof(OperatorInfoRequestModel.Address)" class="form-control" id="address"
+                               placeholder="Enter Address" value="@(Model.OperatorResponse?.Address ?? Model.OperatorRequest?.Address)" />
+                    </div>
+                    <div class="mb-3  col-md-6">
+                        <label for="binNumber" class="form-label">BIN Number <span class="required">*</span></label>
+                        <input type="text" name="@nameof(OperatorInfoRequestModel.BinNumber)" class="form-control" id="binNumber"
+                               placeholder="Enter BIN Number" value="@(Model.OperatorResponse?.BinNumber ?? Model.OperatorRequest?.BinNumber)" />
+                    </div>
+                    <div class="mb-3  col-md-6">
+                        <label for="tinNumber" class="form-label">TIN Number <span class="required">*</span></label>
+                        <input type="text" name="@nameof(OperatorInfoRequestModel.TinNumber)" class="form-control" id="tinNumber"
+                               placeholder="Enter TIN Number" value="@(Model.OperatorResponse?.TinNumber ?? Model.OperatorRequest?.TinNumber)" />
+                    </div>
+                    <div class="mb-3  col-md-6">
+                        <label for="pocName" class="form-label">POC Name </label>
+                        <input type="text" name="@nameof(OperatorInfoRequestModel.POCNAME)" class="form-control" id="pocName"
+                               placeholder="Enter POC Name" value="@(Model.OperatorResponse?.POCNAME ?? Model.OperatorRequest?.POCNAME)" />
+                    </div>
+                    <div class="mb-3  col-md-6">
+                        <label for="pocDesignation" class="form-label">POC Designation </label>
+                        <input type="text" name="@nameof(OperatorInfoRequestModel.POCDESIGNATION)" class="form-control" id="pocDesignation"
+                               placeholder="Enter POC Designation" value="@(Model.OperatorResponse?.POCDESIGNATION ?? Model.OperatorRequest?.POCDESIGNATION)" />
+                    </div>
+                </div>
+
+                <div class="mb-3 d-flex justify-content-end">
+                    <button class="btn btn-warning theme-background-dark" type="submit">
+                        <i class="ti ti-device-floppy"></i>
+                        <span class="ms-2">Update</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Script {
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.FormValidationJS)" render-mode="Static" />
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.BlockUIJS)" render-mode="Static" />
+}
+
+<script>
+    'use strict';
+
+    document.addEventListener('DOMContentLoaded', function (e) {
+        const form = document.querySelector('#form');
+        if (!form) return;
+
+        const fv = FormValidation.formValidation(form, {
+            fields: {
+                Name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter operator name'
+                        },
+                        stringLength: {
+                            min: 2,
+                            message: 'Operator name must be more than 2 characters'
+                        }
+                    }
+                },
+                BinNumber: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter BIN Number'
+                        },
+                        stringLength: {
+                            max: 20,
+                            message: 'BIN Number must not be more than 20 characters'
+                        }
+                    }
+                },
+                TinNumber: {
+                    validators: {
+                        numeric: {
+                            message: 'The value must be a number'
+                        },
+                        notEmpty: {
+                            message: 'Please enter TIN Number'
+                        },
+
+                        stringLength: {
+                            max: 20,
+                            message: 'TIN Number must not be more than 20 characters'
+                        }
+                    }
+                },
+                Address: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter address'
+                        }
+                    }
+                }
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    eleValidClass: '',
+                    rowSelector: '.mb-3'
+                }),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                autoFocus: new FormValidation.plugins.AutoFocus()
+            },
+            init: instance => {
+                instance.on('plugins.message.placed', function (e) {
+                    if (e.element.parentElement.classList.contains('input-group')) {
+                        e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+                    }
+                });
+            }
+        });
+
+        fv.on('core.form.valid', function () {
+            $(".card .card-body").block({
+                message: '<div class="spinner-border text-primary" role="status"></div>',
+                timeout: 1000,
+                css: {
+                    backgroundColor: "transparent",
+                    border: "0"
+                },
+                overlayCSS: {
+                    backgroundColor: "#000",
+                    opacity: 0.25
+                }
+            })
+        });
+
+        fv.on('core.element.validating', function () {
+            $("#alert").hide();
+        });
+    });
+</script>

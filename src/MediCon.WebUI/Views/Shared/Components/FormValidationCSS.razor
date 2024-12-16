@@ -1,0 +1,14 @@
+﻿@inject NavigationManager Navigation
+
+@code {
+    private string? validationCS;
+
+    protected override void OnInitialized()
+    {
+        validationCS = Navigation.ToAbsoluteUri("vuexy/libs/form-validation/form-validation.css").ToString();
+    }
+}
+
+<link rel="stylesheet" href="@validationCS" /> 
+
+@* <link rel="stylesheet" href="/vuexy/libs/form-validation/form-validation.css" /> *@

@@ -1,0 +1,158 @@
+@using MediCon.WebUI.Configurations.Helper
+@using MediCon.WebUI.Controllers.ServiceType
+@using MediCon.WebUI.Controllers.ServiceType.ViewModels
+@using MediCon.WebUI.Services.ServiceTypes.Models
+@model ServiceTypeEditViewModel
+
+@section Head {
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.FormValidationCSS)" render-mode="Static" />
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.BlockUICSS)" render-mode="Static" />
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.CommonCSS)" render-mode="Static" />
+
+}
+
+@section Script {
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.FormValidationJS)" render-mode="Static" />
+    <component type="typeof(MediCon.WebUI.Views.Shared.Components.BlockUIJS)" render-mode="Static" />
+}
+
+<div class="card">
+    <div class="card-body">
+        <div class="card-title mb-3 d-flex align-items-center">
+            <a class="btn-ghost" asp-controller="@nameof(ServiceTypeController).GetControllerName()"
+               asp-action="@nameof(ServiceTypeController.Index)">
+                <i class="menu-icon ti ti-arrow-left"></i>
+            </a>
+            <h4 class="m-0">@Model.PageTitle</h4>
+        </div>
+
+        <form id="form" asp-asp-controller="@nameof(ServiceTypeController).GetControllerName()"
+              asp-action="@nameof(ServiceTypeController.Edit)" asp-route-id="@Model.ServiceTypeResponse?.Id" method="post">
+            @*             <div class="row">
+            <div class="offset-3 col-sm-4 mb-3">
+            <div class="mb-3">
+            <label for="serviceTypeName" class="form-label">Name <span class="required">*</span></label>
+            <input type="text" name="@nameof(ServiceTypeRequestModel.Name)" class="form-control" id="serviceTypeName"
+            placeholder="Enter service type" value="@(Model.ServiceTypeResponse?.Name ?? Model.ServiceTypeRequest?.Name)" />
+            </div>
+            </div>
+            <div class="mb-3 d-flex justify-content-end">
+            <button class="btn btn-warning theme-background-dark" type="submit">
+            <i class="ti ti-device-floppy"></i>
+            <span class="ms-2">Update</span>
+            </button>
+            </div>
+            </div> *@
+            <div class="row">
+                <div class="col-12" style="display:flex; justify-content: center;">
+                    <div class="FormContainer">
+                        <div class="mb-3">
+                            <label for="serviceTypeName" class="form-label">Service Type <span class="required">*</span></label>
+                            <input type="text" name="@nameof(ServiceTypeRequestModel.Name)" class="form-control" id="serviceTypeName"
+                                   placeholder="Enter service type" value="@(Model.ServiceTypeResponse?.Name ?? Model.ServiceTypeRequest?.Name)" />
+                        </div>
+                        <div class="mb-3 d-flex justify-content-end" style="margin-top: 45px;">
+                            <button class="btn btn-warning theme-background-dark" type="submit">
+                                <i class="ti ti-device-floppy"></i>
+                                <span class="ms-2">Update</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    'use strict';
+
+    document.addEventListener('DOMContentLoaded', function (e) {
+        const form = document.querySelector('#form');
+        if (!form) return;
+
+        const fv = FormValidation.formValidation(form, {
+            fields: {
+                Name: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Please enter service type'
+                        },
+                        stringLength: {
+                            min: 2,
+                            message: 'Service type must be more than 2 characters'
+                        }
+                    }
+                },
+            },
+            plugins: {
+                trigger: new FormValidation.plugins.Trigger(),
+                bootstrap5: new FormValidation.plugins.Bootstrap5({
+                    eleValidClass: '',
+                    rowSelector: '.mb-3'
+                }),
+                submitButton: new FormValidation.plugins.SubmitButton(),
+                defaultSubmit: new FormValidation.plugins.DefaultSubmit(),
+                autoFocus: new FormValidation.plugins.AutoFocus()
+            },
+            init: instance => {
+                instance.on('plugins.message.placed', function (e) {
+                    if (e.element.parentElement.classList.contains('input-group')) {
+                        e.element.parentElement.insertAdjacentElement('afterend', e.messageElement);
+                    }
+                });
+            }
+        });
+
+        fv.on('core.form.valid', function () {
+            $(".card .card-body").block({
+                message: '<div class="spinner-border text-primary" role="status"></div>',
+                timeout: 1000,
+                css: {
+                    backgroundColor: "transparent",
+                    border: "0"
+                },
+                overlayCSS: {
+                    backgroundColor: "#000",
+                    opacity: 0.25
+                }
+            })
+        });
+
+        fv.on('core.element.validating', function () {
+            $("#alert").hide();
+        });
+    });
+</script>
+<style>
+    /* .FormContainer {
+            margin-top: 100px;
+            width: 50%;
+            border: 1px solid #f16522;
+            padding: 19px;
+            padding-top: 19px;
+            padding-bottom: 19px;
+            border-radius: 5px;
+            margin-bottom: 200px;
+            padding-top: 50px;
+            padding-bottom: 11px;
+        }
+            */
+
+
+    .FormContainer {
+  margin-top: 23px;
+  width: 54%;
+  -webkit-box-shadow: 1px 1px 10px 1px rgba(171,166,171,1);
+  -moz-box-shadow: 1px 1px 10px 1px rgba(171,166,171,1);
+  box-shadow: 1px 1px 10px 1px rgba(171,166,171,1);
+  padding: 19px;
+  padding-top: 19px;
+  padding-bottom: 19px;
+  border-radius: 5px;
+  margin-bottom: 280px;
+  font-size: 17px;
+  font-weight: bold;
+  background-color: #eee;
+}
+</style>

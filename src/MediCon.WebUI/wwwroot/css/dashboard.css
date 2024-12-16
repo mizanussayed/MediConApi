@@ -1,0 +1,29 @@
+﻿span.required {
+    color: red;
+}
+
+.btn-ghost {
+    color: #6f6b7d;
+}
+
+.layout-page {
+    position: relative;
+}
+
+#loader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: hsl(0deg 0% 87% / 60%);
+    color: #313131;
+    z-index: 50;
+}
+
+#loader-text {
+    margin-left: 10px;
+    font-size: 16px;
+    font-weight: 600;
+}
+

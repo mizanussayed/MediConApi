@@ -1,0 +1,184 @@
+
+p {
+    color: #b3b3b3;
+    font-weight: 300;
+}
+
+a {
+    -webkit-transition: .3s all ease;
+    -o-transition: .3s all ease;
+    transition: .3s all ease;
+}
+
+a:hover {
+    text-decoration: none !important;
+}
+
+.content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+h2 {
+    font-size: 20px;
+}
+
+@media (max-width: 991.98px) {
+    .content .bg {
+        height: 500px;
+    }
+}
+
+.content .contents, .content .bg {
+    width: 50%;
+}
+
+@media (max-width: 1199.98px) {
+    .content .contents, .content .bg {
+        width: 100%;
+    }
+}
+
+
+
+.left-content{
+    position: relative;
+}
+.left-text{
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    max-width: 400px;
+    color: #fff;
+}
+.left-text h1{
+    font-size: 44px;
+}
+.left-text p{
+    font-size: 20px;
+    color: #fff;
+}
+
+.com-logo{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.com-logo img{
+    max-height: 80px;
+}
+.h-title{
+  text-align: center;
+}
+.h-title h3{
+  font-size: 40px;
+}
+.content .contents .form-group input,
+.content .bg .form-group input {
+    overflow: hidden;
+    padding: 15px 25px;
+    position: relative;
+    background: #edf2f5;
+    border-bottom: 1px solid #e6edf1;
+    border-radius: 20px;
+    height: 60px;
+}
+.content .contents .form-group input::placeholder{
+    font-size: 14px;
+}
+.content .contents .form-group input:focus, .content .bg .form-group input:focus {
+    background: #fff;
+}
+
+.content .contents .form-control, .content .bg .form-control {
+    border: none;
+    padding: 0;
+    font-size: 20px;
+    border-radius: 0;
+}
+
+.content .contents .form-control:active, .content .contents .form-control:focus, .content .bg .form-control:active, .content .bg .form-control:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.other-login{
+    position: relative;
+}
+.other-login:before,
+.other-login:after{
+    content: ' ';
+    position: absolute;
+    width: 100px;
+    height: 1px;
+    background: #edf2f5;
+    top: 50%;
+    bottom: 0;
+}
+.other-login:before{
+    left: 0;
+}
+.other-login:after{
+    right: 0;
+}
+.content .bg {
+    background-size: cover;
+    background-position: center;
+}
+
+.content a {
+    color: #888;
+    text-decoration: underline;
+}
+
+.content .btn {
+    height: 60px;
+    background: #FF8036;
+    border-color: #FF8036;
+    border-radius: 20px;
+}
+.content .btn:hover{
+    background: #f66006;
+}
+.content .forgot-pass {
+    position: relative;
+    top: 2px;
+    font-size: 14px;
+}
+.social-login{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap:20px
+}
+.social-login a {
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    position: relative;
+    text-align: center;
+    height: 60px;
+    border-radius: 20px;
+    width: 100%;
+    border: 1px solid #edf2f5;
+    gap: 20px;
+    transition: .3s all;
+}
+.social-login a img{
+    height: 30px;
+    width: auto;
+}
+.social-login a:hover{
+    background: #edf2f5;
+}
+
+.signups a{
+    color:#FF8036;
+    text-decoration: none;
+}
